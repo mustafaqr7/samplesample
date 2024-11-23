@@ -1,0 +1,24 @@
+package com.nt.test;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.nt.beans.WishMessageGenerator;
+
+public class SetterInjectionTest {
+
+    public static void main(String[] args) {
+        
+        // Create the Spring container by reading the beans configuration from the classpath
+        ClassPathXmlApplicationContext context = 
+            new ClassPathXmlApplicationContext("com/nt/cfgs/applicationContext.xml");
+        
+        // Get the target Spring bean (WishMessageGenerator) from the container
+        WishMessageGenerator generator = (WishMessageGenerator) context.getBean("wmg");
+        
+        // Invoke the generateMessage() method on the bean
+        String msg = generator.generateMessage("raja");
+        System.out.println("Wish Message is: " + msg);
+        
+        // Close the context (important for resource management)
+        context.close();
+    }
+}

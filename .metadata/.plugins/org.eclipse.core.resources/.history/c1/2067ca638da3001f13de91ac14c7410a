@@ -1,0 +1,24 @@
+package com.nt.test;
+
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.context.ApplicationContext;
+
+import com.nt.beans.WishMessageGenerator;
+
+public class SetterInjectionTest {
+
+	public static void main(String[] args) {
+		
+		// Hold the name and location of spring bean cfg file in Resource object
+		FileSystemResource res = new FileSystemResource("src/main/java/com/nt/cfgs/applicationContext.xml");
+		// Create BeanFactory spring container(IOC Container)
+		ApplicationContext  factory = new ClassPathXmlApplicationContext(res);
+		// get Target spring bean class obj injected with Dependent spring bean class obj
+		Object object = factory.getBean("wmg");
+		//type casting
+		WishMessageGenerator generator = (WishMessageGenerator)object;
+		//invoke the b.method
+		String msg = generator.generateMessage("raja");
+		System.out.println("Wish Message is ::" +msg);
+	} //main
+}// class

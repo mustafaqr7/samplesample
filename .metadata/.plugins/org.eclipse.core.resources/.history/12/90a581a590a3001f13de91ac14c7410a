@@ -1,0 +1,20 @@
+package com.nt.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.nt.beans.WishMessageGenerator;
+
+public class SetterInjectionTest {
+
+	public static void main(String[] args) {
+		
+		// Load the Spring bean configuration from the classpath
+        ApplicationContext context = new ClassPathXmlApplicationContext("com/nt/cfgs/applicationContext.xml");
+
+        WishMessageGenerator generator = (WishMessageGenerator) context.getBean("wmg");
+
+		String msg = generator.generateMessage("raja");
+		System.out.println("Wish Message is ::" +msg);
+	} //main
+}// class
